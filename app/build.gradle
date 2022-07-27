@@ -1,0 +1,56 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android' version '1.7.10'
+    id 'com.google.devtools.ksp' version '1.7.10-1.0.6'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.luckyzyx.expandablerecyclerview"
+        minSdk 30
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    viewBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+
+    //ExpandableRecyclerView 使用RecyclerView 实现的折叠列表
+    implementation("com.github.pokercc:ExpandableRecyclerView:0.9.3")
+
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    //Gson
+    implementation 'com.google.code.gson:gson:2.9.0'
+    // MoShi JSON ksp 注释处理
+    implementation('com.squareup.moshi:moshi-kotlin:1.13.0')
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.0'
+    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.13.0")
+    //用于 Android 主线程调度程序
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+}
